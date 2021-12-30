@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from Neuron import *
 from LayerDense import *
 from ActivationReLU import *
+from ActivationSoftmax import *
 
 
 def show_information():
@@ -112,6 +113,7 @@ def createDataSet(points, classes):
         y[ix] = classNumber
         return X, y
 
+
 def plotDataSet(X, y):
     plt.scatter(X[:, 0], X[:, 1])
     plt.show()
@@ -131,6 +133,26 @@ def ReLUExperiments(X):
     activation1.forward(layer1.getOutput())
     print(activation1.getOutputs())
 
+
+def SoftmaxExperiments(X):
+    NUMBER_OF_FEATURES = 2
+    NUMBER_OF_NEURONS = 3
+    dense1 = LayerDense(NUMBER_OF_FEATURES, NUMBER_OF_NEURONS)
+    activation1 = ActivationReLU()
+
+    NUMBER_OF_FEATURES = 3
+    NUMBER_OF_NEURONS = 3
+    dense2 = LayerDense(NUMBER_OF_FEATURES, NUMBER_OF_NEURONS)
+    activation2 = ActivationSoftmax()
+
+    dense1.forward(X)
+    activation1.forward(dense1.getOutput())
+
+    dense2.forward(activation1.getOutputs())
+    activation2.forward(dense2.getOutput())
+
+    print(activation2.getOutputs())
+
 if __name__ == '__main__':
     show_information()
     show_libraries()
@@ -146,3 +168,5 @@ if __name__ == '__main__':
     plotDataSet(X, y)
     print("*************************************************")
     ReLUExperiments(X)
+    print("*************************************************")
+    SoftmaxExperiments(X)
