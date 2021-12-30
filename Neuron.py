@@ -1,4 +1,6 @@
 import numpy as np
+
+
 # Modeling a neuron:
 
 class Neuron:
@@ -27,45 +29,5 @@ class Neuron:
     def getOutput(self):
         return self.output
 
-# Calculating outputs using loops:
-# Modeling 1 neuron:
-inputs = [1, 2, 3, 2.5]
-weights = [0.2, 0.8, -0.5, 1]
-bias = 2
-neuron = Neuron(inputs, weights, bias, False)
-neuronOutput = neuron.getOutput()
-print(neuronOutput)
 
-# Modeling 3 neurons:
-inputs = [1, 2, 3, 2.5]
-weights1 = [0.2, 0.8, -0.5, 1]
-weights2 = [0.5, -0.91, 0.26, -0.5]
-weights3 = [-0.26, -0.27, 0.17, 0.87]
-weights = [weights1,
-           weights2,
-           weights3]
 
-bias1 = 2
-bias2 = 3
-bias3 = 0.5
-biases = [bias1,
-          bias2,
-          bias3]
-
-layerOutputs = []
-
-for weight, bias in zip(weights, biases):
-    if 0 < len(weight) or 0 < len(bias):
-        newNeuron = Neuron(inputs, weight, bias, False)
-        layerOutputs.append(newNeuron.getOutput())
-
-print(layerOutputs)
-
-# Calculating outputs with vector math:
-# Modeling 1 neuron:
-inputs = [1, 2, 3, 2.5]
-weights = [0.2, 0.8, -0.5, 1]
-bias = 2
-neuron = Neuron(inputs, weights, bias, True)
-neuronOutput = neuron.getOutput()
-print(neuronOutput)
