@@ -16,4 +16,3 @@ class LayerDense:
 
     def getOutput(self):
         return self.outputs
-    
